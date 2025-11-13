@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECLIPSE LEGENDS - Rebirth of the Realms</title>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Header -->
+        <header id="game-header">
+            <div class="header-left">
+                <h1>⚔️ ECLIPSE LEGENDS</h1>
+                <div class="player-info">
+                    <span class="player-level">Niveau <span id="player-level">1</span></span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="resource-display">
+                    <div class="resource">
+                        <span class="resource-icon">💰</span>
+                        <span id="gold-amount">0</span>
+                    </div>
+                    <div class="resource">
+                        <span class="resource-icon">💎</span>
+                        <span id="gems-amount">500</span>
+                    </div>
+                    <div class="resource">
+                        <span class="resource-icon">✨</span>
+                        <span id="essence-amount">0</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Game Area -->
+        <div id="game-main">
+            <!-- Left Sidebar - Navigation -->
+            <aside id="sidebar-left">
+                <nav class="game-nav">
+                    <button class="nav-btn active" data-screen="combat">⚔️ Combat</button>
+                    <button class="nav-btn" data-screen="heroes">👥 Héros</button>
+                    <button class="nav-btn" data-screen="summon">🎲 Invocation</button>
+                    <button class="nav-btn" data-screen="shop">🏪 Boutique</button>
+                    <button class="nav-btn" data-screen="settings">⚙️ Options</button>
+                </nav>
+
+                <div class="current-stage">
+                    <h3>Progression</h3>
+                    <p>Stage <span id="current-stage">1</span></p>
+                    <p>Chapitre <span id="current-chapter">1</span></p>
+                </div>
+            </aside>
+
+            <!-- Center Content -->
+            <main id="main-content">
+                <!-- Combat Screen -->
+                <div id="combat-screen" class="screen active">
+                    <div class="combat-arena">
+                        <div class="combat-info">
+                            <h2>Stage <span id="stage-number">1</span> - Vague <span id="wave-number">1</span>/10</h2>
+                            <div class="combat-controls">
+                                <button id="auto-progress-btn" class="btn-primary">▶️ Auto</button>
+                                <button id="speed-btn" class="btn-secondary">⏩ x1</button>
+                                <button id="tap-attack-btn" class="btn-tap">👆 TAP BOOST</button>
+                            </div>
+                        </div>
+
+                        <!-- Battle Area -->
+                        <div class="battle-area">
+                            <!-- Heroes Side -->
+                            <div class="team-container heroes-side">
+                                <h3>Vos Héros</h3>
+                                <div id="heroes-battle" class="battle-units">
+                                    <!-- Heroes will be added here by JS -->
+                                </div>
+                            </div>
+
+                            <!-- VS Separator -->
+                            <div class="vs-separator">
+                                <div class="vs-text">VS</div>
+                            </div>
+
+                            <!-- Enemies Side -->
+                            <div class="team-container enemies-side">
+                                <h3>Ennemis</h3>
+                                <div id="enemies-battle" class="battle-units">
+                                    <!-- Enemies will be added here by JS -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Battle Log -->
+                        <div class="battle-log">
+                            <div id="battle-messages" class="log-messages">
+                                <p class="log-msg">Bienvenue dans ECLIPSE LEGENDS !</p>
+                                <p class="log-msg">Cliquez sur "▶️ Auto" pour commencer...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Heroes Screen -->
+                <div id="heroes-screen" class="screen">
+                    <h2>📋 Collection de Héros</h2>
+                    <div class="heroes-filters">
+                        <button class="filter-btn active" data-faction="all">Tous</button>
+                        <button class="filter-btn" data-faction="solari">☀️ Solari</button>
+                        <button class="filter-btn" data-faction="umbrath">🌑 Umbrath</button>
+                        <button class="filter-btn" data-faction="verdan">🌿 Verdan</button>
+                        <button class="filter-btn" data-faction="aetherion">🌌 Aetherion</button>
+                        <button class="filter-btn" data-faction="vorn">🔥 Vorn</button>
+                        <button class="filter-btn" data-faction="nivara">🌙 Nivara</button>
+                    </div>
+                    <div id="heroes-grid" class="heroes-grid">
+                        <!-- Heroes cards will be added here -->
+                    </div>
+                </div>
+
+                <!-- Summon Screen -->
+                <div id="summon-screen" class="screen">
+                    <h2>🎲 Invocation de Héros</h2>
+                    <div class="summon-options">
+                        <div class="summon-card">
+                            <h3>💎 Cristal Mineur</h3>
+                            <p class="summon-desc">Commun (70%), Rare (30%)</p>
+                            <p class="summon-cost">100 💎</p>
+                            <button class="btn-summon" data-type="minor">Invoquer x1</button>
+                        </div>
+                        <div class="summon-card featured">
+                            <h3>💎 Cristal Majeur</h3>
+                            <p class="summon-desc">Rare (60%), Épique (30%), Légendaire (10%)</p>
+                            <p class="summon-cost">300 💎</p>
+                            <button class="btn-summon" data-type="major">Invoquer x1</button>
+                            <button class="btn-summon" data-type="major-10">Invoquer x10 (2700 💎)</button>
+                            <div class="pity-counter">
+                                <p>Pity: <span id="pity-counter">0</span>/50</p>
+                                <div class="pity-bar">
+                                    <div id="pity-progress" class="pity-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="summon-card premium">
+                            <h3>💎 Cristal Sacré</h3>
+                            <p class="summon-desc">Épique (50%), Légendaire (50%)</p>
+                            <p class="summon-cost">500 💎</p>
+                            <button class="btn-summon" data-type="sacred">Invoquer x1</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shop Screen -->
+                <div id="shop-screen" class="screen">
+                    <h2>🏪 Boutique</h2>
+                    <div class="shop-tabs">
+                        <button class="shop-tab active" data-tab="gems">💎 Gemmes</button>
+                        <button class="shop-tab" data-tab="packs">📦 Packs</button>
+                    </div>
+                    <div id="shop-content" class="shop-grid">
+                        <div class="shop-item">
+                            <h3>Pack Débutant</h3>
+                            <p>1000 💎 + Héros Rare garanti</p>
+                            <button class="btn-buy" onclick="alert('Fonctionnalité démo')">GRATUIT (Demo)</button>
+                        </div>
+                        <div class="shop-item">
+                            <h3>Gemmes Gratuites</h3>
+                            <p>Connexion quotidienne</p>
+                            <button class="btn-buy" id="daily-reward-btn">Récupérer 100 💎</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Screen -->
+                <div id="settings-screen" class="screen">
+                    <h2>⚙️ Options</h2>
+                    <div class="settings-panel">
+                        <div class="setting-item">
+                            <label>Musique</label>
+                            <input type="range" min="0" max="100" value="50">
+                        </div>
+                        <div class="setting-item">
+                            <label>Effets Sonores</label>
+                            <input type="range" min="0" max="100" value="50">
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn-danger" id="reset-game-btn">🔄 Réinitialiser le Jeu</button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn-secondary" id="export-save-btn">💾 Exporter Sauvegarde</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Sidebar - Team Management -->
+            <aside id="sidebar-right">
+                <div class="team-panel">
+                    <h3>⚔️ Équipe Active</h3>
+                    <div id="active-team" class="team-slots">
+                        <!-- Team slots will be added by JS -->
+                    </div>
+                    <button id="edit-team-btn" class="btn-secondary">Modifier l'Équipe</button>
+                </div>
+
+                <div class="stats-panel">
+                    <h3>📊 Statistiques</h3>
+                    <div class="stat-item">
+                        <span>DPS Total:</span>
+                        <span id="total-dps">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Or/sec:</span>
+                        <span id="gold-per-sec">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Power:</span>
+                        <span id="team-power">0</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Summon Result Modal -->
+    <div id="summon-modal" class="modal">
+        <div class="modal-content summon-result">
+            <span class="close-modal">&times;</span>
+            <div id="summon-animation" class="summon-anim">
+                <div class="crystal-container">
+                    <div class="crystal"></div>
+                </div>
+            </div>
+            <div id="summon-hero-display" class="hero-display">
+                <!-- Hero result will be shown here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Detail Modal -->
+    <div id="hero-modal" class="modal">
+        <div class="modal-content hero-detail">
+            <span class="close-modal">&times;</span>
+            <div id="hero-detail-content">
+                <!-- Hero details will be shown here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="src/data.js"></script>
+    <script src="src/game.js"></script>
+    <script src="src/combat.js"></script>
+    <script src="src/gacha.js"></script>
+    <script src="src/ui.js"></script>
+    <script src="src/main.js"></script>
+</body>
+</html>
