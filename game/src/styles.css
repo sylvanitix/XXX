@@ -881,3 +881,229 @@ button {
         display: none;
     }
 }
+/* Enhanced Visual Styles for ECLIPSE LEGENDS */
+
+/* Glassmorphism Effects */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* 3D Hero Cards */
+.hero-card-3d {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.hero-card-3d:hover {
+    transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+}
+
+.hero-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+/* Animated Gradient Backgrounds */
+.animated-bg {
+    background: linear-gradient(45deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Particle Effect Container */
+#particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+/* Glowing Effects */
+.glow-effect {
+    position: relative;
+}
+
+.glow-effect::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0);
+    border-radius: inherit;
+    z-index: -1;
+    animation: rotate-glow 3s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.glow-effect:hover::before {
+    opacity: 1;
+}
+
+@keyframes rotate-glow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hero Portrait Placeholder */
+.hero-portrait {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 0.5));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-portrait::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateY(-100%) rotate(45deg); }
+    100% { transform: translateY(100%) rotate(45deg); }
+}
+
+/* Faction-specific gradients */
+.hero-portrait.solari { background: linear-gradient(135deg, #FFD700, #FFA500); }
+.hero-portrait.umbrath { background: linear-gradient(135deg, #8B00FF, #4B0082); }
+.hero-portrait.verdan { background: linear-gradient(135deg, #00FF00, #228B22); }
+.hero-portrait.aetherion { background: linear-gradient(135deg, #4169E1, #1E90FF); }
+.hero-portrait.vorn { background: linear-gradient(135deg, #FF4500, #DC143C); }
+.hero-portrait.nivara { background: linear-gradient(135deg, #9370DB, #8A2BE2); }
+
+/* Summoning Animation */
+@keyframes summon-burst {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.5) rotate(180deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 1;
+    }
+}
+
+.summon-burst {
+    animation: summon-burst 1s ease-out;
+}
+
+/* Battle VFX */
+.attack-effect {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, #fff, transparent);
+    border-radius: 50%;
+    animation: attack-burst 0.5s ease-out forwards;
+}
+
+@keyframes attack-burst {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+/* Energy Bars with Gradient */
+.energy-bar {
+    background: linear-gradient(90deg, #00ff00, #00cc00);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.energy-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: energy-flow 2s infinite;
+}
+
+@keyframes energy-flow {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Floating Animation */
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Hexagon Shapes for Modern Look */
+.hexagon {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* Neon Text Effect */
+.neon-text {
+    color: #fff;
+    text-shadow: 
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px var(--accent-gold),
+        0 0 82px var(--accent-gold),
+        0 0 92px var(--accent-gold),
+        0 0 102px var(--accent-gold),
+        0 0 151px var(--accent-gold);
+    animation: neon-flicker 1.5s infinite alternate;
+}
+
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px var(--accent-gold),
+            0 0 82px var(--accent-gold),
+            0 0 92px var(--accent-gold),
+            0 0 102px var(--accent-gold),
+            0 0 151px var(--accent-gold);
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
